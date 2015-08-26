@@ -100,7 +100,7 @@ return NULL;\
 }\
 }
 
-// func returning err; return err on error.
+// func returning err; exit on error.
 #define CHECK_ERROR_EXIT(func)\
 {\
 int err=(func);\
