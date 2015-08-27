@@ -83,7 +83,13 @@ std::cerr<<__SHORT_FORM_OF_FILE__<<"("<<__LINE__<<"): "<<"Error ("<<err<<"): "<<
 return err;\
 }\
 }
-// func returning object; check if ret == NULL; return NULL on error.
+// func returning object; check if ret == NULL or err != CL_SUCCESS; return err on error.
+#define CHECK_RETURN(ret,func,err)\
+(ret)=(func);\
+if((ret)==NULL||(err)){\
+std::cerr<<__SHORT_FORM_OF_FILE__<<"("<<__LINE__<<"): "<<"Error ("<<err<<"): "<<get_error_string(err)<<std::endl;\
+return err;}
+// func returning object; check if ret == NULL or err != CL_SUCCESS; return NULL on error.
 #define CHECK_RETURN_N(ret,func,err)\
 (ret)=(func);\
 if((ret)==NULL||(err)){\
