@@ -86,20 +86,20 @@ return err;\
 // func returning object; check if ret == NULL or err != CL_SUCCESS; return err on error.
 #define CHECK_RETURN(ret,func,err)\
 (ret)=(func);\
-if((ret)==NULL||(err)){\
+if((ret)==NULL||(err!=CL_SUCCESS)){\
 std::cerr<<__SHORT_FORM_OF_FILE__<<"("<<__LINE__<<"): "<<"Error ("<<err<<"): "<<get_error_string(err)<<std::endl;\
 return err;}
 // func returning object; check if ret == NULL or err != CL_SUCCESS; return NULL on error.
 #define CHECK_RETURN_N(ret,func,err)\
 (ret)=(func);\
-if((ret)==NULL||(err)){\
+if((ret)==NULL||(err!=CL_SUCCESS)){\
 std::cerr<<__SHORT_FORM_OF_FILE__<<"("<<__LINE__<<"): "<<"Error ("<<err<<"): "<<get_error_string(err)<<std::endl;\
 return NULL;}
 // func returning err code; return NULL on error.
 #define CHECK_ERROR_N(func)\
 {\
 int err=(func);\
-if(err)\
+if(err!=CL_SUCCESS)\
 {\
 std::cerr<<__SHORT_FORM_OF_FILE__<<"("<<__LINE__<<"): "<<"Error ("<<err<<"): "<<get_error_string(err)<<std::endl;\
 return NULL;\
